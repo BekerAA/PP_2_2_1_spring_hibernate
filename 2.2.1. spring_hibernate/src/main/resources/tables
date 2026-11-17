@@ -1,6 +1,21 @@
 CREATE TABLE users (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(128),
-    last_name VARCHAR(128),
-    email  VARCHAR(256)
+                       id SERIAL PRIMARY KEY,
+                       name VARCHAR(128),
+                       last_name VARCHAR(128),
+                       email  VARCHAR(256)
 )
+
+CREATE TABLE cars (
+                      id SERIAL PRIMARY KEY,
+                      model VARCHAR(256),
+                      series INT,
+                      user_id BIGINT UNSIGNED NOT NULL
+)
+
+DROP TABLE cars
+
+DROP TABLE users
+
+SELECT *
+FROM users
+WHERE id = (SELECT user_id FROM cars WHERE model = 'Lada Vesta' && series = 3);
